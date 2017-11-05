@@ -1,4 +1,4 @@
-package com.xtrello;
+package com.xtrello.controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
