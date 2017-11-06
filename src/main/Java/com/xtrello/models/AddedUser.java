@@ -5,6 +5,9 @@ package com.xtrello.models;
     */
 
 public class AddedUser {
+        /**
+         * дані повинні бути в дазі даних
+         */
 
         private long id;
         /** foreign key on board table  */
