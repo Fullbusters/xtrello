@@ -1,5 +1,7 @@
 package com.xtrello.controller;
 
+import com.xtrello.views.IndexView;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,14 +23,14 @@ public class Start extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        try {
-            out.println("<html><head><title>MyServlet</title></head><body>");
-            out.write("<H1>Hello Servlet World!</H1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {
-            out.close();
-        }
+        IndexView indexView = new IndexView();
+        indexView.outTopPage(out);
+        indexView.outMenu(out);
+        out.write("<div class=\"container-fluid\">");
+        out.write("<H1>Hello Servlet World!</H1>");
+        out.write("</div>");
+        indexView.outBottomPage(out);
+
 
     }
 }
