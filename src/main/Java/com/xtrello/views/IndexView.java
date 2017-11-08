@@ -35,7 +35,20 @@ public class IndexView {
                 "  </body>\n" +
                 "</html>");
     }
+public void outMenuforguest(PrintWriter out){
+        out.println("<div class=\"container\">\n" +
+                "      <div class=\"header\">\n" +
+                "        <nav>\n" +
+                "          <ul class=\"nav nav-pills pull-right\">\n" +
+                "            <li role=\"presentation\"><a href=\"/AddedUser\">Додані користувічі</a></li>\n" +
+                "            <li role=\"presentation\"><a href=\"/Board\">Дошка</a></li>\n" +
+                "            <li role=\"presentation\"><a href=\"/ListCard\">Список карточок</a></li>\n" +
+                "          </ul>\n" +
+                "        </nav>\n" +
+                "        <h3  class=\"text-muted\"><a href=\"/home\">xTrello</a></h3>\n" +
+                "      </div>");
 
+}
     public  void outMenu(PrintWriter out){
         out.println("<nav class=\"navbar navbar-inverse\">\n" +
                 "      <div class=\"container\">\n" +
@@ -52,7 +65,7 @@ public class IndexView {
                 "          <ul class=\"nav navbar-nav\">\n" +
                 "            <li class=\"active\"><a href=\"/AddedUser\">Додані користувачі </a></li>\n" +
                 "            <li><a href=\"/Board\">Дошка</a></li>\n" +
-                "            <li><a href=\"/ListCard\">список карточок</a></li>\n" +
+                "            <li><a href=\"/ListCard\">Список карточок</a></li>\n" +
                 "          </ul>\n" +
                 "        </div><!--/.nav-collapse -->\n" +
                 "      </div>\n" +
