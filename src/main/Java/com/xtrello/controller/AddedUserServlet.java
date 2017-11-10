@@ -19,10 +19,6 @@ public class AddedUserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        IndexView indexView = new IndexView();
-        indexView.outTopPage(out);
-        indexView.outMenu(out);
-        out.write("<div class=\"container-fluid\">");
         out.println("<a href=\"/AddedUser/createAddedUser\" class=\"btn btn-primary  role=\"button\">Створити доданого користувача</a>");
         out.println("<a href=\"/AddedUser/removeAddedUser\" class=\"btn btn-primary  role=\"button\">Видалити доданого користувача</a>");
         out.println("<a href=\"/AddedUser/updateAddedUser\" class=\"btn btn-primary  role=\"button\">Редагувати доданого користувача</a>");
@@ -48,10 +44,6 @@ public class AddedUserServlet extends HttpServlet {
                 break;
         }
 
-        out.write("</div>");
-
-
-        indexView.outBottomPage(out);
 
     }
 }

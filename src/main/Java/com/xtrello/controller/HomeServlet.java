@@ -19,12 +19,6 @@ public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        IndexView indexView = new IndexView();
-        indexView.outTopPage(out);
-        indexView.outMenuforguest(out);
-        out.write("<div class=\"container-fluid\">");
         out.write("<H1>Hello Home!</H1>");
-        out.write("</div>");
-        indexView.outBottomPage(out);
     }
 }

@@ -19,10 +19,7 @@ public class BoardsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        IndexView indexView = new IndexView();
-        indexView.outTopPage(out);
-        indexView.outMenu(out);
-        out.write("<div class=\"container-fluid\">");
+
         out.println("<a href=\"/Board/createBoard\" class=\"btn btn-primary  role=\"button\">Створити дошку</a>");
         out.println("<a href=\"/Board/removeBoard\" class=\"btn btn-primary  role=\"button\">Видалити дошку</a>");
         out.println("<a href=\"/Board/updateBoard\" class=\"btn btn-primary  role=\"button\">Редагувати  дошку</a>");
@@ -48,9 +45,7 @@ public class BoardsServlet extends HttpServlet {
                 break;
         }
 
-        out.write("</div>");
 
 
-        indexView.outBottomPage(out);
     }
 }

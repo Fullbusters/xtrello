@@ -19,10 +19,6 @@ public class ListCardServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        IndexView indexView = new IndexView();
-        indexView.outTopPage(out);
-        indexView.outMenu(out);
-        out.write("<div class=\"container-fluid\">");
         out.println("<a href=\"/ListCard/createListCard\" class=\"btn btn-primary  role=\"button\">Створити список карточок</a>");
         out.println("<a href=\"/ListCard/removeListCard\" class=\"btn btn-primary  role=\"button\">Видалити список карточок</a>");
         out.println("<a href=\"/ListCard/updateListCard\" class=\"btn btn-primary  role=\"button\">Редагувати  список карточок</a>");
@@ -48,9 +44,9 @@ public class ListCardServlet extends HttpServlet {
                 break;
         }
 
-        out.write("</div>");
 
 
-        indexView.outBottomPage(out);
+
+
     }
 }
