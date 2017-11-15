@@ -19,6 +19,8 @@ public class HtmlSingleton {
     private String menu;
     private String menuforguest;
     private String bottom;
+    private String vxid;
+    private String reg;
 
     private static HtmlSingleton ourInstance = new HtmlSingleton();
 
@@ -64,6 +66,14 @@ public class HtmlSingleton {
     public String getMenuforguest() { return menuforguest; }
 
     public void setMenuforguest(String menuforguest) { this.menuforguest = getPartialHtml(menuforguest); }
+
+    public String getVxid() { return vxid; }
+
+    public void setVxid(String vxid) { this.vxid = getPartialHtml(vxid); }
+
+    public String getReg() { return reg; }
+
+    public void setReg(String reg) { this.reg = getPartialHtml(reg); }
 
     /**
      * Зчитує файл

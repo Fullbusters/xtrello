@@ -41,6 +41,8 @@ public class Start extends HttpServlet {
         pathHTML.setMenu("menu.html");
         pathHTML.setBottom("bottom.html");
         pathHTML.setMenuforguest("menuforguest.html");
+        pathHTML.setReg("reg.html");
+        pathHTML.setVxid("vxid.html");
         System.out.println("Path\t" + pathHTML.getPath());
     }
 }

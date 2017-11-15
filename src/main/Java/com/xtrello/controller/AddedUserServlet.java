@@ -1,6 +1,9 @@
 package com.xtrello.controller;
 
-import com.xtrello.views.IndexView;
+
+
+import com.xtrello.Dao.UserDaoImpl;
+import com.xtrello.models.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,14 +25,18 @@ public class AddedUserServlet extends HttpServlet {
         out.println("<a href=\"/AddedUser/createAddedUser\" class=\"btn btn-primary  role=\"button\">Створити доданого користувача</a>");
         out.println("<a href=\"/AddedUser/removeAddedUser\" class=\"btn btn-primary  role=\"button\">Видалити доданого користувача</a>");
         out.println("<a href=\"/AddedUser/updateAddedUser\" class=\"btn btn-primary  role=\"button\">Редагувати доданого користувача</a>");
-
         switch (request.getPathInfo()){
             case "/":
                 out.write("<H1>Hello User!</H1>");
+
                 break;
             case "/createAddedUser":
-
-                out.write("<H1>Create AddedUser</H1>");
+                UserDaoImpl userDao=new UserDaoImpl();
+                User user=userDao.findUserByEmail("example@gmail.com");
+                if(user!=null){
+                    out.write("<H1>Create AddedUser</H1>");
+                    out.write("<H3>"+user+"</H3>");
+                }
 
                 break;
             case "/removeAddedUser":

@@ -1,4 +1,4 @@
-package com.xtrello.controller;
+package com.xtrello.controller.filters;
 
 import com.xtrello.views.HtmlSingleton;
 import com.xtrello.views.IndexView;
@@ -13,21 +13,23 @@ import java.io.PrintWriter;
 /**
  * Головний фільтр для виводу статичних частин html сторінки
  */
-@WebFilter(filterName = "IndexFilter", urlPatterns = {"/AddedUser","/Board","/ListCard"})
-public class IndexFilter implements Filter {
+@WebFilter(filterName = "IndexForGuestFilter", urlPatterns = {"/","/home" })
+public class IndexForGuestFilter implements Filter {
     public void destroy() {
     }
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         HtmlSingleton pathHtmlSingleton = HtmlSingleton.getInstance();
-//        System.out.println("Filter path\t" + pathHtmlSingleton.getPath());
+
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
+
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         IndexView indexView = new IndexView();
+
         indexView.outTopPage(out);
-        indexView.outMenu(out);
+        indexView.outMenuforguest(out);
         //servlet
         chain.doFilter(request, response);
         //низ html сторінки

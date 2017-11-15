@@ -22,9 +22,8 @@ public class IndexView {
         public  void outMenu(PrintWriter out){
             out.println(HtmlSingleton.getMenu());
         }
-        public void outMenuforguest(PrintWriter out){
-            out.println(HtmlSingleton.getMenuforguest());
-
-        }
+        public void outMenuforguest(PrintWriter out){ out.println(HtmlSingleton.getMenuforguest()); }
+        public void outReg(PrintWriter out){out.println(HtmlSingleton.getReg());}
+        public void outVxid(PrintWriter out){out.println(HtmlSingleton.getVxid());}
 
 }

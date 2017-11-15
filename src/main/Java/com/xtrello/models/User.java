@@ -7,24 +7,26 @@ public class User {
 
     private long id;
     /** email унікальне */
-    private String username;
+    private String email;
     private String password;
     private String name;
-    private Boolean policyPrivacy;
+    private String date;
     /** 1 =admin, 2 = user, 3 = banned user */
     private int role;
 
-    public User(long id, String username, String password, String name, Boolean policyPrivacy, int role) {
+    public User() {
+    }
+
+    public User(long id, String email, String password, String name, String date, int role) {
         this.id = id;
-        this.username = username;
+        this.email = email;
         this.password = password;
         this.name = name;
-        this.policyPrivacy = policyPrivacy;
+        this.date = date;
         this.role = role;
     }
 
-    public User() {
-    }
+
 
     public long getId() {
         return id;
@@ -34,12 +36,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String username) {
+        this.email = username;
     }
 
     public String getPassword() {
@@ -58,12 +60,12 @@ public class User {
         this.name = name;
     }
 
-    public Boolean getPolicyPrivacy() {
-        return policyPrivacy;
+    public String getDate() {
+        return date;
     }
 
-    public void setPolicyPrivacy(Boolean policyPrivacy) {
-        this.policyPrivacy = policyPrivacy;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public int getRole() {
@@ -72,5 +74,43 @@ public class User {
 
     public void setRole(int role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", date='" + date + '\'' +
+                ", role=" + role +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (id != user.id) return false;
+        if (role != user.role) return false;
+        if (email != null ? !email.equals(user.email) : user.email != null) return false;
+        if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        if (name != null ? !name.equals(user.name) : user.name != null) return false;
+        return date != null ? date.equals(user.date) : user.date == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + role;
+        return result;
     }
 }
