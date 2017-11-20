@@ -19,7 +19,7 @@ public class HtmlSingleton {
     private String menu;
     private String menuforguest;
     private String bottom;
-    private String vxid;
+    private String login;
     private String reg;
 
     private static HtmlSingleton ourInstance = new HtmlSingleton();
@@ -67,9 +67,9 @@ public class HtmlSingleton {
 
     public void setMenuforguest(String menuforguest) { this.menuforguest = getPartialHtml(menuforguest); }
 
-    public String getVxid() { return vxid; }
+    public String getLogin() { return login; }
 
-    public void setVxid(String vxid) { this.vxid = getPartialHtml(vxid); }
+    public void setLogin(String login) { this.login = getPartialHtml(login); }
 
     public String getReg() { return reg; }
 

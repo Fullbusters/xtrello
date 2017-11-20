@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -24,8 +25,12 @@ public class Start extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        out.write("<H1>Hello  World!</H1>");
-
+        IndexView indexView = new IndexView();
+        HttpSession session = request.getSession();
+        indexView.outTopPage(out);
+        indexView.outMenu(out, session);
+        out.write("<h3>Hello Start</h3>");
+        indexView.outBottomPage(out);
 
     }
 
@@ -42,7 +47,7 @@ public class Start extends HttpServlet {
         pathHTML.setBottom("bottom.html");
         pathHTML.setMenuforguest("menuforguest.html");
         pathHTML.setReg("reg.html");
-        pathHTML.setVxid("vxid.html");
+        pathHTML.setLogin("login.html");
         System.out.println("Path\t" + pathHTML.getPath());
     }
 }

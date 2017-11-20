@@ -1,5 +1,7 @@
 package com.xtrello.views;
 
+import com.xtrello.models.User;
+import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 
 public class IndexView {
@@ -19,11 +21,17 @@ public class IndexView {
             out.println(HtmlSingleton.getBottom());
         }
 
-        public  void outMenu(PrintWriter out){
-            out.println(HtmlSingleton.getMenu());
+        public  void outMenu(PrintWriter out, HttpSession session){
+            User user = (User) session.getAttribute("user");
+            if(user == null) {
+                out.println(HtmlSingleton.getMenuforguest());
+
+            } else {
+                out.println(HtmlSingleton.getMenu());
+            }
+            //out.println(HtmlSingleton.getMenu());
         }
-        public void outMenuforguest(PrintWriter out){ out.println(HtmlSingleton.getMenuforguest()); }
         public void outReg(PrintWriter out){out.println(HtmlSingleton.getReg());}
-        public void outVxid(PrintWriter out){out.println(HtmlSingleton.getVxid());}
+        public void outLogin(PrintWriter out){out.println(HtmlSingleton.getLogin());}
 
 }

@@ -1,5 +1,6 @@
 package com.xtrello.controller.filters;
 
+import com.xtrello.models.User;
 import com.xtrello.views.HtmlSingleton;
 import com.xtrello.views.IndexView;
 
@@ -7,6 +8,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -26,12 +28,20 @@ public class IndexFilter implements Filter {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         IndexView indexView = new IndexView();
-        indexView.outTopPage(out);
-        indexView.outMenu(out);
-        //servlet
-        chain.doFilter(request, response);
-        //низ html сторінки
-        indexView.outBottomPage(out);
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        if(user == null) {
+            //out.write("<a>href="//"</a>");
+
+        }
+        else {
+            indexView.outTopPage(out);
+            indexView.outMenu(out, session);
+            //servlet
+            chain.doFilter(request, response);
+            //низ html сторінки
+            indexView.outBottomPage(out);
+        }
     }
 
     public void init(FilterConfig config) throws ServletException {
