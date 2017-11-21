@@ -15,3 +15,23 @@
     color: #fff;
     text-decoration: none;
 }
+
+.global-header-section-logo {
+    display: block;
+    float: left;
+    height: 3em;
+    margin-right: .75em;
+}
+.header {
+    border-bottom: 1px solid #e5e5e5;
+}
+body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.header h4 {
+    padding-bottom: 70px;
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 70px;
+}

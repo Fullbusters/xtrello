@@ -23,7 +23,13 @@ public class UserServlet extends HttpServlet {
 
         switch (request.getPathInfo()) {
             case "/register":
-                out.println("<h1>register form proccessed for user</h1>");
+                String emailreg = request.getParameter("emailLogin");
+                String passwordreg = request.getParameter("loginPassword");
+                String Username=request.getParameter("Username");
+                out.println(emailreg+"\t"+passwordreg+"\t"+Username);
+                userDao.addUser(emailreg,passwordreg,Username);
+                out.println("<h1>Congratulation</h1>");
+
                 break;
             case "/login":
                 // перевіряє логін форму, якщо неправильно введені дані повертає форму для перезаповнення
