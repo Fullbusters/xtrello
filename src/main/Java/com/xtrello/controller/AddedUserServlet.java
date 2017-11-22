@@ -2,7 +2,7 @@ package com.xtrello.controller;
 
 
 
-import com.xtrello.Dao.UserDaoImpl;
+import com.xtrello.Dao.User.UserDaoImpl;
 import com.xtrello.models.User;
 
 import javax.servlet.ServletException;

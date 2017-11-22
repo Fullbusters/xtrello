@@ -28,10 +28,14 @@ public class IndexView {
 
             } else {
                 out.println(HtmlSingleton.getMenu());
+
             }
             //out.println(HtmlSingleton.getMenu());
         }
         public void outReg(PrintWriter out){out.println(HtmlSingleton.getReg());}
         public void outLogin(PrintWriter out){out.println(HtmlSingleton.getLogin());}
+        public void outCreateBoard(PrintWriter out){
+            out.println(HtmlSingleton.getCreateBoard());
+        }
 
 }

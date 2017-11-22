@@ -21,6 +21,7 @@ public class HtmlSingleton {
     private String bottom;
     private String login;
     private String reg;
+    private String createBoard;
 
     private static HtmlSingleton ourInstance = new HtmlSingleton();
 
@@ -74,6 +75,14 @@ public class HtmlSingleton {
     public String getReg() { return reg; }
 
     public void setReg(String reg) { this.reg = getPartialHtml(reg); }
+
+    public String getCreateBoard() {
+        return createBoard;
+    }
+
+    public void setCreateBoard(String createBoard) {
+        this.createBoard = getPartialHtml(createBoard);
+    }
 
     /**
      * Зчитує файл

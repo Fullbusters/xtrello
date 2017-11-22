@@ -1,6 +1,6 @@
 package com.xtrello.controller;
 
-import com.xtrello.Dao.UserDaoImpl;
+import com.xtrello.Dao.User.UserDaoImpl;
 import com.xtrello.models.User;
 
 import javax.servlet.ServletException;
@@ -40,7 +40,7 @@ public class UserServlet extends HttpServlet {
                 if(user != null) {
                     //записав об'єкт користувача в сесію, щоб перевіряти в інших сервлетах чи зареєстрований користувач
                     session.setAttribute("user", user);
-                    out.println("<h1>hello зареєстрований користувач user</h1>");
+                    response.sendRedirect("/");
                 } else {
                     response.sendRedirect("/Login");
 

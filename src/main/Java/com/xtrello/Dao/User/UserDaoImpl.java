@@ -1,5 +1,7 @@
-package com.xtrello.Dao;
+package com.xtrello.Dao.User;
 
+import com.xtrello.Dao.DataSource;
+import com.xtrello.Dao.User.UserDao;
 import com.xtrello.models.User;
 
 import java.sql.Connection;
@@ -7,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class UserDaoImpl implements UserDao{
+public class UserDaoImpl implements UserDao {
     @Override
     public User findUserByEmail(String email) {
         DataSource dataSource = new DataSource();

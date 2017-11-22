@@ -1,4 +1,4 @@
-package com.xtrello.Dao;
+package com.xtrello.Dao.User;
 
 import com.xtrello.models.User;
 
