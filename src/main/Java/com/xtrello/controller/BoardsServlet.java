@@ -1,7 +1,11 @@
 package com.xtrello.controller;
 
+import com.xtrello.Dao.Board.BoardDao;
 import com.xtrello.Dao.Board.BoardDaoImpl;
+import com.xtrello.Dao.ListBoards.ListBoardDao;
 import com.xtrello.Dao.ListBoards.ListBoardDaoImpl;
+import com.xtrello.Dao.SharedListBoardDaoImpl;
+import com.xtrello.Dao.SharedListBoardsDao;
 import com.xtrello.models.Board;
 import com.xtrello.models.ListBoard;
 import com.xtrello.models.User;
@@ -15,23 +19,33 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @WebServlet(name = "BoardsServlet", urlPatterns = {"/Board/*"})
 public class BoardsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        BoardDaoImpl boardDao=new BoardDaoImpl();
+        //BoardDaoImpl boardDao=new BoardDaoImpl();
+        ListBoardDao listBoardDao=new ListBoardDaoImpl();
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         switch (request.getPathInfo()){
             case "/createBoard":
 
                 String name = request.getParameter("name");
+
                 out.println("name "+name+"  id"+user.getId());
-                boardDao.createBoard(name, user.getId() );
+                //boardDao.createBoard(name,  );
                 out.println("<h3>Поки що все норм</h3>");
 
+                break;
+            case "/createListBoard":
+                String namelistboard = request.getParameter("name");
+                String text = request.getParameter("text");
+                out.println("name "+namelistboard+"  id"+user.getId());
+                listBoardDao.createListBoard(namelistboard,user.getId(),text);
                 break;
         }
     }
@@ -39,35 +53,45 @@ public class BoardsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        ListBoardDaoImpl listBoardDao=new ListBoardDaoImpl();
-        BoardDaoImpl boardDao=new BoardDaoImpl();
         HttpSession session = request.getSession();
+        IndexView indexView = new IndexView();
+        SharedListBoardsDao sharedListBoardsDao=new SharedListBoardDaoImpl();
+        BoardDao boardDao=new BoardDaoImpl();
 
         User user = (User) session.getAttribute("user");
         out.println("<a href=\"/Board/createBoard\" class=\"btn btn-primary  role=\"button\">Створити дошку</a>");
         out.println("<a href=\"/Board/printBoard\" class=\"btn btn-primary  role=\"button\"> Всі дошки користувача</a>");
 
 
+
         switch (request.getPathInfo()){
             case "/":
                 out.write("<H1>Hello User!</H1>");
                 break;
+            case "/createListBoard":
+                indexView.outCreateListBoard(out);
+
+                break;
             case "/createBoard":
 
-                IndexView indexView = new IndexView();
                 indexView.outCreateBoard(out);
                 out.write("<H1>Create Board</H1>");
 
                 break;
             case "/printBoard":
-                ListBoard listBoard=listBoardDao.printListBoard(user.getId());
-                out.println("<h4>"+listBoard.getName()+"</h4>");
-                Board board=boardDao.printBoard(listBoard.getId());
-                out.println("<h5> Тут ще норм </h5>");
-                out.println("<h4>"+board.getName()+"</h4>");
 
-
-
+                String row =sharedListBoardsDao.getListBoardsByUserId(user.getId()).stream()
+                        .map(e->"<p>"+e.toString()+"</p>")
+                        .collect(Collectors.joining(""));
+                System.out.println(row);
+                out.println(sharedListBoardsDao.getIdListBoardByUserId(user.getId()));
+                String row2 =sharedListBoardsDao.getIdListBoardByUserId(user.getId()).stream()
+                        .map(e->"<p>"+boardDao.printBoard(e)+"</p>")
+                        .collect(Collectors.joining(""));
+                out.println(row2);
+                //row.toString()+""
+               // out.println("<p>"+sharedListBoardsDao.getListBoardsByUserId(user.getId())+"  правильно "+row.+"</p>");
+                out.println("<a href=\"/Board/createListBoard\" class=\"btn btn-primary  role=\"button\"> Створити Команду</a>");
                 break;
             case "/updateBoard":
 

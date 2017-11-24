@@ -49,6 +49,7 @@ public class Start extends HttpServlet {
         pathHTML.setReg("reg.html");
         pathHTML.setLogin("login.html");
         pathHTML.setCreateBoard("createBoard.html");
+        pathHTML.setCreateListBoard("createListBoard.html");
         System.out.println("Path\t" + pathHTML.getPath());
     }
 }

@@ -37,5 +37,8 @@ public class IndexView {
         public void outCreateBoard(PrintWriter out){
             out.println(HtmlSingleton.getCreateBoard());
         }
+        public void outCreateListBoard(PrintWriter out){
+            out.println(HtmlSingleton.getCreateListBoard());
+        }
 
 }
