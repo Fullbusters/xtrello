@@ -35,3 +35,8 @@ body {
     margin-bottom: 0;
     line-height: 70px;
 }
+
+.list-group-item.active
+.list-group-item-heading {
+     text-align: center;
+ }

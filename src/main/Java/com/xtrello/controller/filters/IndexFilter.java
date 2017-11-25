@@ -31,7 +31,8 @@ public class IndexFilter implements Filter {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         if(user == null) {
-            //out.write("<a>href="//"</a>");
+            response.sendRedirect("/");
+
 
         }
         else {

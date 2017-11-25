@@ -1,5 +1,11 @@
 package com.xtrello.controller;
 
+import com.xtrello.Dao.Board.BoardDao;
+import com.xtrello.Dao.Board.BoardDaoImpl;
+import com.xtrello.Dao.SharedListBoardDaoImpl;
+import com.xtrello.Dao.SharedListBoardsDao;
+import com.xtrello.models.ListBoard;
+import com.xtrello.models.User;
 import com.xtrello.views.HtmlSingleton;
 import com.xtrello.views.IndexView;
 
@@ -11,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Start servlet
@@ -26,10 +34,31 @@ public class Start extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         IndexView indexView = new IndexView();
+        SharedListBoardsDao sharedListBoardsDao=new SharedListBoardDaoImpl();
+        BoardDao boardDao=new BoardDaoImpl();
         HttpSession session = request.getSession();
         indexView.outTopPage(out);
         indexView.outMenu(out, session);
-        out.write("<h3>Hello Start</h3>");
+        User user = (User) session.getAttribute("user");
+        if(user == null) {
+        out.write("<h3>Hello Start</h3>"+
+        "<button type=\"button\" class=\"btn btn-default\">Підготовлена</button>");
+
+        }else {
+            List<ListBoard> lstListBoard =sharedListBoardsDao.getListBoardsByUserId(user.getId());
+
+            String  row =lstListBoard.stream()
+                    .map(e->{
+                        String str2="<p>"+indexView.outListBoard(out,e)+" "+boardDao.printBoard(e.getId())+"</p>";
+                        return str2;
+                    })
+                    .collect(Collectors.joining(""));
+
+
+            out.println(row);
+            out.println("<a href=\"/Board/createListBoard\" class=\"btn btn-primary  role=\"button\"> Створити Команду</a>");
+
+        }
         indexView.outBottomPage(out);
 
     }
