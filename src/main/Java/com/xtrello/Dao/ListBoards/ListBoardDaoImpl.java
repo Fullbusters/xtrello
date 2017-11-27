@@ -12,7 +12,7 @@ import java.sql.Statement;
 
 public class ListBoardDaoImpl implements ListBoardDao {
     @Override
-    public ListBoard createListBoard(String name, long User_id,String text) {
+    public void createListBoard(String name, long User_id,String text) {
 
         DataSource dataSource=new DataSource();
         SharedListBoardDaoImpl sharedListBoardDao=new SharedListBoardDaoImpl();
@@ -37,7 +37,7 @@ public class ListBoardDaoImpl implements ListBoardDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+
 
     }
 

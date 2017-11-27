@@ -10,19 +10,15 @@ public class Card {
     /** foreign key on listCard table  */
     private long listCard_id;
     /** card creator */
-    private long user_id;
-    private String dateCreate;
 
     public Card() {
     }
 
-    public Card(long id, String name, String comentar, long listCard_id, long user_id, String dateCreate) {
+    public Card(long id, String name, String comentar, long listCard_id) {
         this.id = id;
         this.name = name;
         this.comentar = comentar;
         this.listCard_id = listCard_id;
-        this.user_id = user_id;
-        this.dateCreate = dateCreate;
     }
 
     public long getId() {
@@ -57,19 +53,35 @@ public class Card {
         this.listCard_id = listCard_id;
     }
 
-    public long getUser_id() {
-        return user_id;
+    @Override
+    public String toString() {
+        return "Card{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", comentar='" + comentar + '\'' +
+                ", listCard_id=" + listCard_id +
+                '}';
     }
 
-    public void setUser_id(long user_id) {
-        this.user_id = user_id;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Card card = (Card) o;
+
+        if (id != card.id) return false;
+        if (listCard_id != card.listCard_id) return false;
+        if (name != null ? !name.equals(card.name) : card.name != null) return false;
+        return comentar != null ? comentar.equals(card.comentar) : card.comentar == null;
     }
 
-    public String getDateCreate() {
-        return dateCreate;
-    }
-
-    public void setDateCreate(String dateCreate) {
-        this.dateCreate = dateCreate;
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (comentar != null ? comentar.hashCode() : 0);
+        result = 31 * result + (int) (listCard_id ^ (listCard_id >>> 32));
+        return result;
     }
 }

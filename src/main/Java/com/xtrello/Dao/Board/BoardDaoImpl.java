@@ -13,10 +13,10 @@ import java.util.List;
 
 public class BoardDaoImpl implements BoardDao {
     @Override
-    public Board createBoard(String name, long ListBoard_id) {
+    public Board createBoard(String name,long listboard_id, long User_id) {
 
         DataSource dataSource=new DataSource();
-        String str = "INSERT INTO `boards`(`name`,`ListBoard_id`) VALUE (\""+name+"\",\""+ListBoard_id+"\"); ";
+        String str = "INSERT INTO `boards`(`name`,`ListBoard_id`,`creator_id`) VALUE (\""+name+"\",\""+listboard_id+"\",\""+User_id+"\"); ";
         try (
                 Connection con =dataSource.createConnection();
                 Statement stmt=con.createStatement();
@@ -32,7 +32,7 @@ public class BoardDaoImpl implements BoardDao {
     }
 
     @Override
-    public List<Board> printBoard(long ListBoard_id) {
+    public List<Board> getBoardByListBoardId(long ListBoard_id) {
         DataSource dataSource=new DataSource();
         List<Board> boards=  new ArrayList<>();
         String str = "Select id ,name, ListBoard_id From boards Where boards.ListBoard_id =\""+ListBoard_id+"\";";

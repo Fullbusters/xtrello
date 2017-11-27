@@ -4,6 +4,7 @@ import com.xtrello.Dao.Board.BoardDao;
 import com.xtrello.Dao.Board.BoardDaoImpl;
 import com.xtrello.Dao.SharedListBoardDaoImpl;
 import com.xtrello.Dao.SharedListBoardsDao;
+import com.xtrello.models.Board;
 import com.xtrello.models.ListBoard;
 import com.xtrello.models.User;
 import com.xtrello.views.HtmlSingleton;
@@ -49,13 +50,14 @@ public class Start extends HttpServlet {
 
             String  row =lstListBoard.stream()
                     .map(e->{
-                        String str2="<p>"+indexView.outListBoard(out,e)+" "+boardDao.printBoard(e.getId())+"</p>";
+                        String str2="<p>"+indexView.outListBoard(e)+" "+indexView.outBoard(boardDao.getBoardByListBoardId(e.getId()))+/*" "+indexView.outCreateBoard(e)+*/"</p>";
                         return str2;
                     })
                     .collect(Collectors.joining(""));
 
-
+            out.println("<div class=\"row\">");
             out.println(row);
+            out.println("</div>");
             out.println("<a href=\"/Board/createListBoard\" class=\"btn btn-primary  role=\"button\"> Створити Команду</a>");
 
         }
