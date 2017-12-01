@@ -10,14 +10,16 @@ public class Board {
     private String name;
     /** board creator */
     private long ListBoard_id;
-
-            public Board(long id, String name, long user_id) {
-                this.id = id;
-                this.name = name;
-                this.ListBoard_id = user_id;
-            }
+    private long creator_id;
 
             public Board() {
+            }
+
+            public Board(long id, String name, long listBoard_id, long creator_id) {
+                this.id = id;
+                this.name = name;
+                ListBoard_id = listBoard_id;
+                this.creator_id = creator_id;
             }
 
             public long getId() {
@@ -41,7 +43,15 @@ public class Board {
             }
 
             public void setListBoard_id(long listBoard_id) {
-                this.ListBoard_id = listBoard_id;
+                ListBoard_id = listBoard_id;
+            }
+
+            public long getCreator_id() {
+                return creator_id;
+            }
+
+            public void setCreator_id(long creator_id) {
+                this.creator_id = creator_id;
             }
 
             @Override
@@ -50,6 +60,7 @@ public class Board {
                         "id=" + id +
                         ", name='" + name + '\'' +
                         ", ListBoard_id=" + ListBoard_id +
+                        ", creator_id=" + creator_id +
                         '}';
             }
 
@@ -62,6 +73,7 @@ public class Board {
 
                 if (id != board.id) return false;
                 if (ListBoard_id != board.ListBoard_id) return false;
+                if (creator_id != board.creator_id) return false;
                 return name != null ? name.equals(board.name) : board.name == null;
             }
 
@@ -70,6 +82,7 @@ public class Board {
                 int result = (int) (id ^ (id >>> 32));
                 result = 31 * result + (name != null ? name.hashCode() : 0);
                 result = 31 * result + (int) (ListBoard_id ^ (ListBoard_id >>> 32));
+                result = 31 * result + (int) (creator_id ^ (creator_id >>> 32));
                 return result;
             }
         }

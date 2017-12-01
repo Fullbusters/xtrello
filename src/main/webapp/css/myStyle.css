@@ -59,3 +59,9 @@ body {
 .panel-body {
     padding: 15px;
 }
+ .board
+{
+    height: 100px;
+     width:320px;
+
+}

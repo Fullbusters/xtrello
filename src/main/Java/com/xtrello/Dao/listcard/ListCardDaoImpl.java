@@ -46,4 +46,25 @@ public class ListCardDaoImpl  implements ListCardDao{
         return null;
 
     }
+
+    @Override
+    public void createListCard(String name, long board_id) {
+        DataSource dataSource=new DataSource();
+        String str= "INSERT INTO `listcards`(`name`, `Board_id`) VALUE (\""+name+"\",\""+board_id+"\"); ";
+
+        try (
+                Connection con =dataSource.createConnection();
+                Statement stmt=con.createStatement();
+        ){
+
+            stmt.executeUpdate(str);
+
+            System.out.println("Congratulation create listcard");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 }

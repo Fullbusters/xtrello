@@ -16,7 +16,7 @@ public class SharedListBoardDaoImpl implements SharedListBoardsDao {
 
         DataSource dataSource = new DataSource();
         List<ListBoard> lstlistboard = new ArrayList<>();
-        String str = "SELECT * FROM listboards WHERE listboards.idListBoards IN (Select listBoard_id From sharedlistboards Where sharedlistboards.User_id =\"" + id + "\");";
+        String str = "SELECT * FROM listboards WHERE listboards.User_id=\""+id+"\" OR listboards.idListBoards IN (Select listBoard_id From sharedlistboards Where sharedlistboards.User_id =\"" + id + "\");";
 
         try (
                 Connection con = dataSource.createConnection();
@@ -47,33 +47,6 @@ public class SharedListBoardDaoImpl implements SharedListBoardsDao {
 
 
     }
-
-//    @Override
-//    //public List<Long> getIdListBoardByUserId(long id) {
-//        DataSource dataSource = new DataSource();
-//        List<Long> lstidListBoard = new ArrayList<>();
-//        String str = "SELECT idListBoards FROM listboards WHERE listboards.idListBoards IN (Select listBoard_id From sharedlistboards Where sharedlistboards.User_id =\"" + id + "\");";
-//
-//        try (
-//                Connection con = dataSource.createConnection();
-//                Statement stmt = con.createStatement();
-//                ResultSet rs = stmt.executeQuery(str);
-//        ) {
-//            while (rs.next()) {
-//
-//                lstidListBoard.add(rs.getLong("idListBoards"));
-//            }
-////            lstidListBoard.stream().sorted().forEach(System.out::println);
-////            System.out.println(lstidListBoard);
-//            return lstidListBoard;
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//
-//
-//        return null;
-//    }
 
     @Override
     public void addUserInSharedListBoards(long User_id, long listboard_id) {

@@ -4,7 +4,6 @@ import com.xtrello.Dao.Board.BoardDao;
 import com.xtrello.Dao.Board.BoardDaoImpl;
 import com.xtrello.Dao.SharedListBoardDaoImpl;
 import com.xtrello.Dao.SharedListBoardsDao;
-import com.xtrello.models.Board;
 import com.xtrello.models.ListBoard;
 import com.xtrello.models.User;
 import com.xtrello.views.HtmlSingleton;
@@ -41,26 +40,31 @@ public class Start extends HttpServlet {
         indexView.outTopPage(out);
         indexView.outMenu(out, session);
         User user = (User) session.getAttribute("user");
+
         if(user == null) {
-        out.write("<h3>Hello Start</h3>"+
-        "<button type=\"button\" class=\"btn btn-default\">Підготовлена</button>");
+        out.write("<h3>Trello Вітає вас </h3>");
+
 
         }else {
             List<ListBoard> lstListBoard =sharedListBoardsDao.getListBoardsByUserId(user.getId());
 
+
             String  row =lstListBoard.stream()
                     .map(e->{
-                        String str2="<p>"+indexView.outListBoard(e)+" "+indexView.outBoard(boardDao.getBoardByListBoardId(e.getId()))+/*" "+indexView.outCreateBoard(e)+*/"</p>";
+                        String str2="<p>"+indexView.outListBoard(e)+" "+indexView.outBoard(boardDao.getBoardByListBoardId(e.getId()))+"</p>";
                         return str2;
                     })
                     .collect(Collectors.joining(""));
 
             out.println("<div class=\"row\">");
+            out.println(indexView.outBoard(boardDao.getBoardByUserId(user.getId())));
             out.println(row);
             out.println("</div>");
-            out.println("<a href=\"/Board/createListBoard\" class=\"btn btn-primary  role=\"button\"> Створити Команду</a>");
 
+           indexView.outCreateListBoard(out);
+            out.println(indexView.outCreateBoardBottom(lstListBoard));
         }
+
         indexView.outBottomPage(out);
 
     }
@@ -81,6 +85,7 @@ public class Start extends HttpServlet {
         pathHTML.setLogin("login.html");
         pathHTML.setCreateBoard("createBoard.html");
         pathHTML.setCreateListBoard("createListBoard.html");
+        pathHTML.setCreateBoardBottom("createBoardBottom.html");
         System.out.println("Path\t" + pathHTML.getPath());
     }
 }

@@ -1,7 +1,7 @@
-package com.xtrello.controller.filters;
+package com.xtrello.controller;
+
 
 import com.xtrello.models.User;
-import com.xtrello.views.HtmlSingleton;
 import com.xtrello.views.IndexView;
 
 import javax.servlet.*;
@@ -12,17 +12,16 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+
 /**
  * Головний фільтр для виводу статичних частин html сторінки
  */
-@WebFilter(filterName = "IndexFilter", urlPatterns = {"/AddedUser/*","/Board/*","/ListCard/*"})
+@WebFilter(filterName = "IndexFilter", urlPatterns = {"/Board/*","/Card/*"})
 public class IndexFilter implements Filter {
     public void destroy() {
     }
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
-        HtmlSingleton pathHtmlSingleton = HtmlSingleton.getInstance();
-//        System.out.println("Filter path\t" + pathHtmlSingleton.getPath());
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
         response.setContentType("text/html;charset=UTF-8");

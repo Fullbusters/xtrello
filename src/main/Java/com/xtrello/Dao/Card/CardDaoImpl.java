@@ -11,6 +11,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CardDaoImpl implements CardDao{
+
+    @Override
+    public void deleteCard(long id) {
+        DataSource dataSource=new DataSource();
+        String str= "DELETE FROM cards WHERE idCard=\""+id+"\";";
+
+        try (
+                Connection con =dataSource.createConnection();
+                Statement stmt=con.createStatement();
+        ){
+
+            stmt.executeUpdate(str);
+
+            System.out.println("Congratulation delete card");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     @Override
     public List<Card> getCardByListCardId(long listcardid) {
 
@@ -49,4 +70,28 @@ public class CardDaoImpl implements CardDao{
 
 
     }
+
+
+
+    @Override
+    public void createCard(String name, long idlistcard) {
+        DataSource dataSource=new DataSource();
+        String str= "INSERT INTO `cards`(`nameCard`, `ListCard_id`) VALUE (\""+name+"\",\""+idlistcard+"\"); ";
+
+        try (
+                Connection con =dataSource.createConnection();
+                Statement stmt=con.createStatement();
+        ){
+
+            stmt.executeUpdate(str);
+
+            System.out.println("Congratulation create listcard");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 }

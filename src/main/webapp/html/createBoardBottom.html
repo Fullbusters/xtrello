@@ -1,0 +1,40 @@
+<div class="modal fade createBoard" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="row">
+
+                <form action="/Board/createBoard" method="POST">
+                    <div class="col-sm-12">
+                        <div class="list-group">
+                            <a class="list-group-item active"  >
+                                <h5 class="list-group-item-heading">Створити дошку</h5>
+                            </a>
+                            <a class="list-group-item">
+                                <div class="form-group">
+                                    <label for="nameboard">Назва</label>
+                                    <input type="name" class="form-control" id="nameboard" name="name" placeholder="Назва дошки ">
+
+                                </div>
+
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="1" checked>
+                                        Приватна
+                                    </label>
+                                </div>
+                                <!--input-->
+
+                            </a>
+                            <div>
+                                <button type="submit" class="btn btn-default btn-block">Створити</button>
+                            </div>
+                        </div>
+
+                    </div><!-- /.col-sm-4 -->
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
