@@ -106,21 +106,19 @@ public class IndexView {
                     .map(e->"<p>"+outCard(e)+"</p>")
                     .collect(Collectors.joining(""));
              String str=
-                                "<div class=\"col-sm-4\">"+
-                                " <div class=\"panel panel-primary\">" +
-                                "            <div class=\"panel-heading\">" +
-                                "              <h3 class=\"panel-title\"> "+lstCard.getName()+"</h3>" +
-                                "            </div>" +
-                                "            <div class=\"panel-body\">" +
+                                "<div class=\"col-sm-4\">\n"+
+                                " <div class=\"panel panel-primary\">\n" +
+                                "            <div class=\"panel-heading\">\n" +
+                                "              <h3 class=\"panel-title\"> "+lstCard.getName()+"</h3>\n" +
+                                "            </div>\n" +
+                                "            <div class=\"panel-body\">\n" +
                                 "            "+strcard+" "+
                                         outCreateCard(lstCard.getId())+
-                                "            </div>" +
-                                "          </div>" +
-                                "        </div>"
-
+                                " <a href=\"/ListCard/Delete?idlistcard="+lstCard.getId()+"&idboard="+lstCard.getBoard_id()+"\" class=\"btn btn-warning  role=\"button\"> Видалити список карточок</a>;"+
+                                "            </div>\n" +
+                                "          </div>\n" +
+                                "        </div>\n"
                                 ;
-
-
             return str;
         }
         public String outCreateListCard( long idboard){
@@ -149,9 +147,9 @@ public class IndexView {
         }
         public String outCard(Card card){
             String str="<div class=\"col-sm-12\">\n" +
-                    "          <div class=\"list-group\">" +
+                    "          <div class=\"list-group\">\n" +
                     "           <a href=\"/Board/Board/Card?id="+card.getId()+"\" class=\"list-group-item\">\n" +
-                    "              <h4 class=\"list-group-item-heading\">"+card.getName()+"</h4>" +
+                    "              <h4 class=\"list-group-item-heading\">"+card.getName()+"</h4>\n" +
                     "           </a>\n" +
                     "          </div>\n" +
                     "        </div>";
@@ -161,8 +159,8 @@ public class IndexView {
             return str;
     }
         public String outCreateCard(long idlistcard){
-            String str="<div class=\"col-sm-12\">"+
-                " <form action=\"/Board/createCard?id="+idlistcard+"\" method=\"POST\">"+
+            String str="<div class=\"col-sm-12\">\n"+
+                " <form action=\"/Board/createCard?id="+idlistcard+"\" method=\"POST\">\n"+
                 "<div class=\"list-group\">\n" +
                 "                            <a class=\"list-group-item active\"  >\n" +
                 "                                <h5 class=\"list-group-item-heading\">Створити карточку </h5>\n" +
@@ -171,14 +169,14 @@ public class IndexView {
                 "                                <div class=\"form-group\">\n" +
                 "                                    <label for=\"namecard\">Назва</label>\n" +
                 "                                    <input type=\"name\" class=\"form-control\" id=\"namecard\" name=\"namecard\" placeholder=\"Назва карточки \">\n" +
-                "</div>"+
-                "</a>" +
+                "</div>\n"+
+                "</a>\n" +
                 "                            <div>\n" +
                 "                                <button type=\"submit\" class=\"btn btn-default btn-block\">Створити карточку</button>\n" +
                 "                            </div>\n" +
-                "                        </div>"+
-                "                                </div>"+
-                "</form>"
+                "                        </div>\n"+
+                "                                </div>\n"+
+                "</form>\n"
         ;
 
           return str;

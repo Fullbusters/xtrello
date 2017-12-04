@@ -108,6 +108,7 @@ public class BoardsServlet extends HttpServlet {
         IndexView indexView = new IndexView();
         SharedListBoardsDao sharedListBoardsDao=new SharedListBoardDaoImpl();
         BoardDao boardDao=new BoardDaoImpl();
+        CardDao cardDao = new CardDaoImpl();
         User user = (User) session.getAttribute("user");
         List<ListBoard> lstListBoard =sharedListBoardsDao.getListBoardsByUserId(user.getId());
 
@@ -178,17 +179,21 @@ public class BoardsServlet extends HttpServlet {
 
                 break;
             case"/Board/Card/Delete":
-                CardDao cardDao = new CardDaoImpl();
-
                 long idcardfordelete = Long.parseLong(request.getParameter("id"));
-
-                cardDao.deleteCard(idcardfordelete);
+                cardDao.deleteCardByCardId(idcardfordelete);
                 break;
 
             case"/Board/Delete":
-
+                ListCardDao listCardDao=new ListCardDaoImpl();
                 long idboardfordelete = Long.parseLong(request.getParameter("id"));
+                //TODO Fullbuster видалення всіх карточок
+                String deletecard=listCardDao.getListCardByBoardId(idboardfordelete).stream()
+                        .map(e->{ cardDao.deleteCardByListCardId(e.getId());
+                                return "";
+                        })
+                        .collect(Collectors.joining(""));
 
+                listCardDao.deleteListCardByBoard_Id(idboardfordelete);
                 boardDao.deleteBoard(idboardfordelete);
                 break;
             case "addUsertoboard":
@@ -196,6 +201,7 @@ public class BoardsServlet extends HttpServlet {
                 long idboardtoadduser=Long.parseLong(request.getParameter("optionsRadios"));
                 out.println("doget "+emailuser+"   "+idboardtoadduser);
                 break;
+
 
 
         }

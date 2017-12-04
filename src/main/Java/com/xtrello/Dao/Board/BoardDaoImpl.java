@@ -22,7 +22,7 @@ public class BoardDaoImpl implements BoardDao {
                 Connection con =dataSource.createConnection();
                 Statement stmt=con.createStatement();
         ){
-
+            System.out.println(name);
             stmt.executeUpdate(str);
             System.out.println("Congratulation");
 
@@ -35,13 +35,14 @@ public class BoardDaoImpl implements BoardDao {
     @Override
     public void createBoardNotListBoard(String name, long user_id) {
         DataSource dataSource=new DataSource();
-        String str = "INSERT INTO `boards`(`name`,`ListBoard_id`,`creator_id`) VALUE (\""+name+"\",\"1\",\""+user_id+"\"); ";
+       // String str = ;
         try (
                 Connection con =dataSource.createConnection();
                 Statement stmt=con.createStatement();
         ){
 
-            stmt.executeUpdate(str);
+            stmt.executeUpdate("INSERT INTO `boards`(`name`,`ListBoard_id`,`creator_id`) VALUE (\""+name+"\",\"1\",\""+user_id+"\"); ");
+            System.out.println(name);
             System.out.println("Congratulation create board not listboardId");
 
         } catch (SQLException e) {

@@ -67,4 +67,43 @@ public class ListCardDaoImpl  implements ListCardDao{
 
 
     }
+
+    @Override
+    public void deleteListCardByListCard_Id(long idlistcard) {
+
+        DataSource dataSource=new DataSource();
+        String str= "DELETE FROM listcards WHERE idListCard=\""+idlistcard+"\"; ";
+
+        try (
+                Connection con =dataSource.createConnection();
+                Statement stmt=con.createStatement();
+        ){
+
+            stmt.executeUpdate(str);
+
+            System.out.println("Congratulation delete listcard");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteListCardByBoard_Id(long board_id) {
+        DataSource dataSource=new DataSource();
+        String str= "DELETE FROM listcards WHERE Board_id=\""+board_id+"\"; ";
+
+        try (
+                Connection con =dataSource.createConnection();
+                Statement stmt=con.createStatement();
+        ){
+
+            stmt.executeUpdate(str);
+
+            System.out.println("Congratulation delete listcard");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

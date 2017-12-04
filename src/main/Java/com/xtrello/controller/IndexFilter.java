@@ -16,7 +16,7 @@ import java.io.PrintWriter;
 /**
  * Головний фільтр для виводу статичних частин html сторінки
  */
-@WebFilter(filterName = "IndexFilter", urlPatterns = {"/Board/*","/Card/*"})
+@WebFilter(filterName = "IndexFilter", urlPatterns = {"/Board/*","/Card/*","/ListCard/*"})
 public class IndexFilter implements Filter {
     public void destroy() {
     }

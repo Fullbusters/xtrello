@@ -6,7 +6,8 @@ import java.util.List;
 
 public interface CardDao {
 
-    void deleteCard(long id);
+    void deleteCardByCardId(long id);
     void createCard(String name,long idlistcard);
     List<Card> getCardByListCardId(long listcardid);
+    void deleteCardByListCardId(long idlistcard);
 }

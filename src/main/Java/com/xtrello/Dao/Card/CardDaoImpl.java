@@ -13,7 +13,7 @@ import java.util.List;
 public class CardDaoImpl implements CardDao{
 
     @Override
-    public void deleteCard(long id) {
+    public void deleteCardByCardId(long id) {
         DataSource dataSource=new DataSource();
         String str= "DELETE FROM cards WHERE idCard=\""+id+"\";";
 
@@ -71,7 +71,24 @@ public class CardDaoImpl implements CardDao{
 
     }
 
+    @Override
+    public void deleteCardByListCardId(long idlistcard) {
+        DataSource dataSource=new DataSource();
+        String str= "DELETE FROM cards WHERE ListCard_id=\""+idlistcard+"\";";
 
+        try (
+                Connection con =dataSource.createConnection();
+                Statement stmt=con.createStatement();
+        ){
+
+            stmt.executeUpdate(str);
+
+            System.out.println("Congratulation delete card");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void createCard(String name, long idlistcard) {

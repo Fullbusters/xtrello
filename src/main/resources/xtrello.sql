@@ -132,3 +132,4 @@ foreign key (User_id) references users (id)
 	on update cascade on delete cascade
 ;
 
+
