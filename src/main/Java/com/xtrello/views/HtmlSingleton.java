@@ -24,6 +24,7 @@ public class HtmlSingleton {
     private String createBoard;
     private String createListBoard;
     private String createBoardBottom;
+    private String updateComentar;
 
     private static HtmlSingleton ourInstance = new HtmlSingleton();
 
@@ -100,6 +101,14 @@ public class HtmlSingleton {
 
     public void setCreateBoardBottom(String createBoardBottom) {
         this.createBoardBottom = getPartialHtml(createBoardBottom);
+    }
+
+    public String getUpdateComentar() {
+        return updateComentar;
+    }
+
+    public void setUpdateComentar(String updateComentar) {
+        this.updateComentar = getPartialHtml(updateComentar);
     }
 
     /**

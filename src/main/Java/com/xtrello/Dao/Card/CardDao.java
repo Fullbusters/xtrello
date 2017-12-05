@@ -10,4 +10,5 @@ public interface CardDao {
     void createCard(String name,long idlistcard);
     List<Card> getCardByListCardId(long listcardid);
     void deleteCardByListCardId(long idlistcard);
+    void updateComentar(String comentar,long idcard);
 }

@@ -41,6 +41,7 @@ public class BoardsServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         UserDao userDao=new UserDaoImpl();
+        CardDao cardDao=new CardDaoImpl();
         SharedListBoardsDao sharedListBoardsDao=new SharedListBoardDaoImpl();
         SharedBoardDao sharedBoardDao=new SharedBoardDaoImpl();
 
@@ -52,7 +53,7 @@ public class BoardsServlet extends HttpServlet {
                 long radio=Long.parseLong(request.getParameter("optionsRadios"));
                 out.println("str  =  "+name+"  id ="+radio);
                 if (radio==1){
-                boardDao.createBoardNotListBoard(name, user.getId() );
+                    boardDao.createBoardNotListBoard(name, user.getId() );
                 }else{
                     boardDao.createBoard(name,radio,user.getId());
                 };
@@ -77,7 +78,7 @@ public class BoardsServlet extends HttpServlet {
                 response.sendRedirect("/Board/Board?id="+idboard+"");
                 break;
             case "/createCard":
-                CardDao cardDao=new CardDaoImpl();
+
                 String namecard=request.getParameter("namecard");
                 long idlistcard=Long.parseLong(request.getParameter("id"));
                 out.println("назва карточки "+namecard+"  id списку  "+idlistcard);
@@ -96,6 +97,12 @@ public class BoardsServlet extends HttpServlet {
                 if(boardadd.getListBoard_id()!=1) {
                     sharedListBoardsDao.addUserInSharedListBoards(adduser.getId(), boardadd.getListBoard_id());
                 }
+                break;
+            case "/createComentar":
+                String comentar=request.getParameter("comentar");
+                long idcard= Long.parseLong(request.getParameter("optionsRadios"));
+                cardDao.updateComentar(comentar,idcard);
+                response.sendRedirect("/");
                 break;
 
         }
@@ -176,7 +183,7 @@ public class BoardsServlet extends HttpServlet {
                 long idcard= Long.parseLong(request.getParameter("id"));
                 out.println(idcard);
                 out.println("<a href=\"/Board/Board/Card/Delete?id="+idcard+"\" class=\"btn btn-warning  role=\"button\"> Видалити карточку</a>");
-
+                indexView.outupdateComentar(out,idcard);
                 break;
             case"/Board/Card/Delete":
                 long idcardfordelete = Long.parseLong(request.getParameter("id"));
@@ -189,7 +196,7 @@ public class BoardsServlet extends HttpServlet {
                 //TODO Fullbuster видалення всіх карточок
                 String deletecard=listCardDao.getListCardByBoardId(idboardfordelete).stream()
                         .map(e->{ cardDao.deleteCardByListCardId(e.getId());
-                                return "";
+                            return "";
                         })
                         .collect(Collectors.joining(""));
 

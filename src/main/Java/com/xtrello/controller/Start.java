@@ -42,7 +42,7 @@ public class Start extends HttpServlet {
         User user = (User) session.getAttribute("user");
 
         if(user == null) {
-        out.write("<h3>Trello Вітає вас </h3>");
+            out.write("<h3>Trello Вітає вас </h3>");
 
 
         }else {
@@ -61,7 +61,7 @@ public class Start extends HttpServlet {
             out.println(row);
             out.println("</div>");
 
-           indexView.outCreateListBoard(out);
+            indexView.outCreateListBoard(out);
             out.println(indexView.outCreateBoardBottom(lstListBoard));
         }
 
@@ -86,6 +86,7 @@ public class Start extends HttpServlet {
         pathHTML.setCreateBoard("createBoard.html");
         pathHTML.setCreateListBoard("createListBoard.html");
         pathHTML.setCreateBoardBottom("createBoardBottom.html");
+        pathHTML.setUpdateComentar("cardComentar.html");
         System.out.println("Path\t" + pathHTML.getPath());
     }
 }

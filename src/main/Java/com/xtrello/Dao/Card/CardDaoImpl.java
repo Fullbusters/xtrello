@@ -91,6 +91,25 @@ public class CardDaoImpl implements CardDao{
     }
 
     @Override
+    public void updateComentar(String comentar, long idcard) {
+        DataSource dataSource=new DataSource();
+        String str= "UPDATE cards SET Comentar =\""+comentar+"\" WHERE idCard="+idcard+" ;   ";
+
+        try (
+                Connection con =dataSource.createConnection();
+                Statement stmt=con.createStatement();
+        ){
+
+            stmt.executeUpdate(str);
+
+            System.out.println("Congratulation create ");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public void createCard(String name, long idlistcard) {
         DataSource dataSource=new DataSource();
         String str= "INSERT INTO `cards`(`nameCard`, `ListCard_id`) VALUE (\""+name+"\",\""+idlistcard+"\"); ";
