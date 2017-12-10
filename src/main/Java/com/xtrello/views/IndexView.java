@@ -49,7 +49,18 @@ public class IndexView {
         //out.println(HtmlSingleton.getMenu());
     }
     public void outReg(PrintWriter out){out.println(HtmlSingleton.getReg());}
-    public void outLogin(PrintWriter out){out.println(HtmlSingleton.getLogin());}
+    public void outLogin(PrintWriter out,String value){
+        if(value==null){
+            out.println(HtmlSingleton.getLogin());
+        }else{
+            String login = HtmlSingleton.getLogin();
+            String str = "<div class=\"alert alert-warning\">\n" +
+                    "  <strong>Warning!</strong> Неправильный логин или пароль\n" +
+                    "</div>";
+            login = login.replace("<!--aaa-->",str);
+            out.println(login);
+        }
+        }
     public String  outCreateBoard( ){
         String str=HtmlSingleton.getCreateBoard();
 
