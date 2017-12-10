@@ -21,9 +21,10 @@ public class LoginServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         IndexView indexView = new IndexView();
 
+        String value = (request.getParameter("value"));
 
         indexView.outTopPage(out);
-        indexView.outLogin(out);
+        indexView.outLogin(out,value);
         indexView.outBottomPage(out);
     }
 }

@@ -35,20 +35,36 @@ public class UserServlet extends HttpServlet {
                 String email = request.getParameter("emailLogin");
                 String password = request.getParameter("loginPassword");
                 User user = userDao.findUserByEmail(email);
+
+                //TODO login
                 //якщо емейл є в БД, змінна user буде посилатись на об'єкт класу User, інакше дорівнюватиме null
-                if(user != null) {
+                if(user.getEmail().equals(email) && user.getPassword().equals(password)) {
                     //записав об'єкт користувача в сесію, щоб перевіряти в інших сервлетах чи зареєстрований користувач
                     session.setAttribute("user", user);
                     response.sendRedirect("/");
                 } else {
-                    response.sendRedirect("/Login");
 
+                    response.sendRedirect("/Login?value=1");
                 }
                 break;
+
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        UserDaoImpl userDao = new UserDaoImpl();
+        HttpSession session = request.getSession();
+
+        switch (request.getPathInfo()){
+            case "/logout":
+                session.removeAttribute("user");
+                session.invalidate();
+                response.sendRedirect("/");
+                break;
+        }
+
 
     }
 }
