@@ -18,7 +18,9 @@
 --
 -- Table structure for table `boards`
 --
-
+DROP DATABASE IF EXISTS example;
+CREATE DATABASE example;
+USE example;
 
 DROP TABLE IF EXISTS `boards`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
