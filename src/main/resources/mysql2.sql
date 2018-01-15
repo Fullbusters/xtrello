@@ -18,9 +18,12 @@
 --
 -- Table structure for table `boards`
 --
-DROP DATABASE IF EXISTS example;
-CREATE DATABASE example;
-USE example;
+CREATE USER 'usertrello'@'localhost' IDENTIFIED BY '1111';
+
+
+DROP DATABASE IF EXISTS trello;
+CREATE DATABASE trello;
+USE trello;
 
 DROP TABLE IF EXISTS `boards`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -211,7 +214,11 @@ LOCK TABLES `users` WRITE;
 INSERT INTO `users` VALUES (1,'example@gmail.com','1122','Yurii','2017-11-15',1),(2,'a@a','1111','qwerty','2017-11-18',0),(3,'igor@lyutak.com','1122','Igor','2017-11-15',1),(9,'qwert@qq','11111','qqqq','2017-11-15',2),(10,'hj@d.k','hkj','hkj','2017-11-15',2),(11,'d@d','1111','name','2017-11-24',1),(12,'qqqqqqqqq@qqqq','159','nameUser','2017-11-15',2);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+GRANT ALL PRIVILEGES ON trello . * TO 'usertrello'@'localhost';
+FLUSH PRIVILEGES;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

@@ -11,7 +11,7 @@ public class DataSource {
     Connection connection = null;
 
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL="jdbc:mysql://localhost/example?user=user&password=1122";
+    static final String DB_URL="jdbc:mysql://localhost/trello?user=usertrello&password=1111";
 
 
     public DataSource()
